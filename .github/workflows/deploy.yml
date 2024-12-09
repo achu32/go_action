@@ -1,6 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-
-name: CI
+name: lieta-dash server
 
 # Controls when the workflow will run
 on:
@@ -22,18 +21,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world ${{ secrets.HOST }} ${{ secrets.HOST2 }}!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -41,5 +28,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script: hostname
+          script: |
+            echo $(date) >> check
+            cd "$HOME/lietadash/Django Channels Test/lieta && git pull
+            
 
