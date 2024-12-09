@@ -30,6 +30,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             echo $(date) >> check
-            cd "$HOME/lietadash/Django Channels Test/lieta && git pull
+            cd "$HOME/lietadash/Django Channels Test/lieta" && git pull
             
 
