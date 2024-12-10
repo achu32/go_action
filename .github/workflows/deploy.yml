@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name: lieta-dash server
+name: Deploy lieta-dash server
 
 # Controls when the workflow will run
 on:
@@ -29,7 +29,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            echo $(date) >> check
-            cd "$HOME/lietadash/Django Channels Test/lieta" && git pull
-            
-
+            echo $(date) >> last_pull
+            cd "$HOME/lietadash" && git pull
+            bash Nginx/update_nginx.sh
+            bash Django_Channels/lieta/start_lietadash_service.sh
